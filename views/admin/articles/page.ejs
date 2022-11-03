@@ -1,0 +1,47 @@
+<%- include ('../../partials/header.ejs') %>
+<%- include ('../../partials/homeNavBar.ejs') %>
+
+    <body>
+        <div class="container">
+            <br>
+            <% result.articles.rows.forEach(article => { %>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <%= article.title %>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <a href="/<%= article.slug %>" class="btn btn-success">Ler Artigo</a>
+                    </div>
+                </div>
+                <br>
+           <% }) %>
+            <div class="row">
+                <div class="col col-12">
+                    <!-- enquanto existir proximo, exibir botao -->
+                    <% if(result.next) {%>
+                        <a href="/articles/page/<%= result.page + 1%>" style="float: right; color: black; text-decoration: none;">
+                            Next >>>> 
+                        </a>
+                    <%}%>
+                    <!-- se existir pagina anterior, exibe botao para voltar -->
+                    <% if(result.page > 1) {%>
+                        <a href="/articles/page/<%= result.page - 1%>" style="float: left; color: black; text-decoration: none;">
+                            <<<< Prev
+                        </a>
+                    <%}%>
+                    <!-- quando for a ultima pagia, voltar para home -->
+                    <% if(result.page <= 1) {%>
+                        <a href="/>" style="float: left; color: black; text-decoration: none;">
+                            <<<< Prev 
+                        </a>
+                    <%}%>
+                </div>
+            </div>
+            <br>
+            <hr>
+        </div>
+    </body>
+
+<%- include ('../../partials/footer.ejs') %>

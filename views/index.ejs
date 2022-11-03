@@ -1,0 +1,49 @@
+<%- include ('partials/header.ejs') %>
+<%- include ('partials/homeNavBar.ejs') %>
+
+    <body>
+        <div class="container">
+            <br>
+            <div class="jumbotron">
+                <h1 
+                    class="display-4"> Bem vindo ao meu blog
+                </h1>
+                <hr>
+                <p class="lead">
+                    Esse sistema foi feito por mim, Rafael Lemos
+                </p>
+                <hr class="my-4">
+                <p>
+                    Link para meu GitHub no botão a baixo
+                </p>
+                <a class="btn btn-primary btn-lg" href="https://github.com/RafaLemos86" role="button">
+                    GitHub
+                </a>
+            </div>
+            <% articles.forEach(article => { %>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <%= article.title %>
+                        </h2>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="/<%= article.slug %>" class="btn btn-success">Ler Artigo</a>
+                    </div>
+                </div>
+                <br>
+           <% }) %>
+            <div class="row">
+                <div class="col col-12">
+                    <a href="/articles/page/2" style="float: right; color: black; text-decoration: none;">
+                        Next >>>> 
+                    </a>
+                </div>
+            <br>
+            <hr>
+            </div>
+        </div>
+    </body>
+
+<%- include ('partials/footer.ejs') %>
