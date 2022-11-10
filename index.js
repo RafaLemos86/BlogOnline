@@ -8,14 +8,18 @@ const bodyParser = require('body-parser');
 const connection = require('./database/database');
 
 
+
 // importando router do categories
 const categoriesController = require('./categories/CategoriesController');
 // importando router de articles
 const articlesController = require('./articles/ArticleController');
+// importando router de users
+const usersController = require('./users/UsersController')
 
 // importando tabela categories e tabela articles
 const Article = require('./articles/Article');
 const Category = require('./categories/Category');
+const User = require('./users/User')
 
 
 // Carregar o EJS
@@ -41,7 +45,8 @@ connection
 
 // basicamente, esta funcao serve para informar o index para usar as rotas do categories
 app.use('/', categoriesController);
-app.use('/', articlesController)
+app.use('/', articlesController);
+app.use('/', usersController);
 
 
 // ROTAS
