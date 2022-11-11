@@ -12,11 +12,16 @@ router.get('/admin/users/create', (req, res) => {
 })
 
 
-// force true: recriar a tabela a cada vez que o codigo rodar
-// force false: se a tabela ja existir, cria, se nao, nao cria
-// User.sync({
-//     force: false
-// });
+router.post('/users/create', (req, res) => {
+    var email = req.body.email
+    var password = req.body.password
+
+    res.json({
+        email, password
+    })
+})
+
+
 
 
 module.exports = router

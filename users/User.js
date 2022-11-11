@@ -16,4 +16,10 @@ const User = connection.define('users', {
     }
 });
 
+// force true: recriar a tabela a cada vez que o codigo rodar
+// force false: se a tabela ja existir, cria, se nao, nao cria
+// User.sync({
+//     force: false
+// });
+
 module.exports = User;
