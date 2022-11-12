@@ -8,12 +8,14 @@ const Category = require('../categories/Category');
 const Article = require('./Article.js')
 // importando slug
 const slugify = require('slugify')
+// importando middlewar
+const adminAuth = require('../middlewares/adminAuth')
 
 
 // enviando os dados de artcle para a view
 // DENTRO DO FINDALL ESTA SENDO FEIO UM JOIN
 // para informar o NOME da categoria na view
-router.get('/admin/articles', (req, res) => {
+router.get('/admin/articles', adminAuth, (req, res) => {
     Article.findAll({
         // JOIN
         include: [{
@@ -29,7 +31,7 @@ router.get('/admin/articles', (req, res) => {
 
 // criar novo artigo
 // enviando lista de categorias para view de artigos
-router.get('/admin/articles/new', (req, res) => {
+router.get('/admin/articles/new', adminAuth, (req, res) => {
     Category.findAll().then(categories => {
         res.render('admin/articles/new', {
             categories: categories
@@ -39,7 +41,7 @@ router.get('/admin/articles/new', (req, res) => {
 });
 
 // salvando artigo
-router.post('/admin/article/save', (req, res) => {
+router.post('/admin/article/save', adminAuth, (req, res) => {
     var title = req.body.title
     var body = req.body.body
     var category = req.body.category
@@ -58,7 +60,7 @@ router.post('/admin/article/save', (req, res) => {
 
 // rota para exluir dados do artigo
 // metodo Destroy serve para excluir do banco
-router.post('/articles/delete', (req, res) => {
+router.post('/articles/delete', adminAuth, (req, res) => {
     var id = req.body.id
     if (id != undefined) {
         if (!isNaN(id)) {
@@ -79,7 +81,7 @@ router.post('/articles/delete', (req, res) => {
 
 
 // rota para carregar pagina de edicao
-router.get('/admin/articles/edit/:id', (req, res) => {
+router.get('/admin/articles/edit/:id', adminAuth, (req, res) => {
     var id = req.params.id
 
     if (isNaN(id)) {
@@ -103,7 +105,7 @@ router.get('/admin/articles/edit/:id', (req, res) => {
         })
 });
 
-router.post('/article/save', (req, res) => {
+router.post('/article/save', adminAuth, (req, res) => {
     var id = req.body.id
     var title = req.body.title
     var body = req.body.body
@@ -122,7 +124,7 @@ router.post('/article/save', (req, res) => {
 })
 
 // salvando a edicao do artigo no banco
-router.post('/article/update', (req, res) => {
+router.post('/article/update', adminAuth, (req, res) => {
     var id = req.body.id;
     var title = req.body.title;
     var body = req.body.body;

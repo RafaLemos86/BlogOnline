@@ -6,6 +6,9 @@ const router = express.Router();
 const Category = require('./Category')
 // importando slug
 const slugify = require('slugify')
+// importando middlewar
+const adminAuth = require('../middlewares/adminAuth')
+
 
 // rota do formulario de categorias
 router.get('/admin/categories/new', (req, res) => {
@@ -15,7 +18,7 @@ router.get('/admin/categories/new', (req, res) => {
 
 // rota para listar categorias
 // FINDALL esta mandando os dados da tabela category para a rota
-router.get('/admin/categories', (req, res) => {
+router.get('/admin/categories', adminAuth, (req, res) => {
     Category.findAll()
         .then(categories => {
             res.render('admin/categories/index', {
@@ -27,7 +30,7 @@ router.get('/admin/categories', (req, res) => {
 
 // findByPk esta pesquisando o id
 // rota para editar uma categoria
-router.get('/admin/categories/edit/:id', (req, res) => {
+router.get('/admin/categories/edit/:id', adminAuth, (req, res) => {
     var id = req.params.id
 
     if (isNaN(id)) {
@@ -52,7 +55,7 @@ router.get('/admin/categories/edit/:id', (req, res) => {
 
 
 // rota para salvar os dados do formulario de categorias
-router.post('/categories/save', (req, res) => {
+router.post('/categories/save', adminAuth, (req, res) => {
     var title = req.body.title
     if (title != undefined) {
         // salvando titulo no banco de dados
@@ -69,7 +72,7 @@ router.post('/categories/save', (req, res) => {
 
 // rota para exluir dados da categoria
 // metodo Destroy serve para excluir do banco
-router.post('/categories/delete', (req, res) => {
+router.post('/categories/delete', adminAuth, (req, res) => {
     var id = req.body.id
     if (id != undefined) {
         if (!isNaN(id)) {
@@ -90,7 +93,7 @@ router.post('/categories/delete', (req, res) => {
 
 // rota para atualizar categorias
 // atualizar titulo WHERE id = id
-router.post('/categories/update', (req, res) => {
+router.post('/categories/update', adminAuth, (req, res) => {
     var id = req.body.id
     var title = req.body.title
 
