@@ -6,6 +6,8 @@ const app = express();
 const bodyParser = require('body-parser');
 // carregando conexao do banco
 const connection = require('./database/database');
+// importando express-session
+const session = require('express-session')
 
 
 
@@ -24,6 +26,15 @@ const User = require('./users/User')
 
 // Carregar o EJS
 app.set('view engine', 'ejs');
+
+// configurando sessao
+app.use(session({
+    secret: 'textoqualquerparaaumentarseguranca',
+    cookie: {
+        maxAge: 30000000
+    }
+}));
+
 
 // carregando arquivos estaticos no express
 app.use(express.static('public'))
@@ -50,6 +61,7 @@ app.use('/', usersController);
 
 
 // ROTAS
+
 
 // rota principal
 app.get('/', (req, res) => {
