@@ -6,11 +6,12 @@
 
 Trata-se de uma aplicação que permite aos usuários inserirem diversos tipos de conteúdo, desde texto até vídeos, seguindo o estilo de um blog. Cada usuário terá acesso aos conteúdos inseridos pelos demais. O projeto conta com um sistema de Login e cadastro para garantir a segurança e privacidade dos usuários.
 
-## :white_check_mark: Tecnologias Utilizadas
+## :white_check_mark: Principais Tecnologias Utilizadas
 
 - Node.js
 * Javascript
 - EJS
+- Express
 
 ## :point_right: Como Iniciar o Projeto
 
