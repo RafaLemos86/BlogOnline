@@ -9,7 +9,7 @@ Trata-se de uma aplicação que permite aos usuários inserirem diversos tipos d
 ## :white_check_mark: Principais Tecnologias Utilizadas
 
 - Node.js
-* Javascript
+- Javascript
 - EJS
 - Express
 
